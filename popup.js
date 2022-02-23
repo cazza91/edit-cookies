@@ -3,7 +3,7 @@ const actualSiteLabel = document.getElementById('actual-site');
 const actualCookieValueLabel = document.getElementById('actual-cookie-value');
 const buttonContainer = document.getElementById('button-container');
 
-const COOKIENAME = "CanaleGruppoMOL";
+const COOKIENAME = "slot";
 const COOKIEURL = "https://www.mutuionline.it";
 
 // The async IIFE is necessary because Chrome <89 does not support top level await.
@@ -64,9 +64,8 @@ window.addEventListener('click', (e) => {
                 if (cookie) {
                     const cookieUrl = cookie.url;
                     chrome.cookies.set({
-                        "name": COOKIENAME,
-                        "value": cookieContentToSet,
-                        "url": COOKIEURL
+                        ...cookie,
+                        "value": cookieContentToSet
                     })
                 }
             }
