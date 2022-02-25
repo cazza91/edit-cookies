@@ -7,7 +7,7 @@
     "service_worker": "background.js"
   },
   "host_permissions": [
-    "https://www.mutuionline.it/"
+    "https://segugioassicurazionip.gruppomol.lcl/"
   ],
   "permissions": ["storage", "activeTab", "scripting", "cookies"],
   "action": {

@@ -4,7 +4,7 @@ const actualCookieValueLabel = document.getElementById('actual-cookie-value');
 const buttonContainer = document.getElementById('button-container');
 
 const COOKIENAME = "slot";
-const COOKIEURL = "https://www.mutuionline.it";
+const COOKIEURL = "https://segugioassicurazionip.gruppomol.lcl/";
 
 // The async IIFE is necessary because Chrome <89 does not support top level await.
 (async function initPopupWindow() {
@@ -13,7 +13,7 @@ const COOKIEURL = "https://www.mutuionline.it";
     if (tab?.url) {
         try {
             let url = new URL(tab.url);
-            actualSiteLabel.innerHTML = url.hostname;
+            actualSiteLabel.innerHTML = url;
 
             chrome.cookies.get(
                 {"name": COOKIENAME, "url": COOKIEURL},
@@ -62,10 +62,12 @@ window.addEventListener('click', (e) => {
             (cookie) => {
                 console.log(cookie);
                 if (cookie) {
-                    const cookieUrl = cookie.url;
                     chrome.cookies.set({
-                        ...cookie,
-                        "value": cookieContentToSet
+                        url: COOKIEURL,
+                        domain: cookie.domain,
+                        name: cookie.name,
+                        expirationDate: cookie.expirationDate,
+                        value: cookieContentToSet
                     })
                 }
             }
